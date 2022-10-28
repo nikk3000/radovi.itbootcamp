@@ -1,40 +1,15 @@
 package zavrsniProjekat.tests;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import zavrsniProjekat.pages.AllProducts;
-import zavrsniProjekat.pages.Home;
-import zavrsniProjekat.pages.ViewCart;
+import zavrsniProjekat.base.Base;
 
-import java.time.Duration;
-
-public class AddToCart {
-
-    private WebDriver wd;
-    private Home home;
-
-    private ViewCart viewCart;
-
-
-    private AllProducts allProducts;
-
+public class AddToCart extends Base {
 
     @BeforeMethod
     public void configure(){
-        System.setProperty("webdriver.chrome.driver",
-                "D:\\QA\\webdrivers\\chrome\\chromedriver.exe");
-
-
-        wd = new ChromeDriver();
-        home = new Home(wd);
-        viewCart = new ViewCart(wd);
-        allProducts = new AllProducts(wd);
-
-        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wd.get("https://www.automationexercise.com/");
         wd.manage().window().maximize();
     }
@@ -65,9 +40,4 @@ public class AddToCart {
 
     }
 
-
-    @AfterMethod
-    public void closeWD(){
-        wd.quit();
-    }
 }

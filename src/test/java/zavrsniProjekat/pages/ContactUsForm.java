@@ -1,12 +1,11 @@
 package zavrsniProjekat.pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import zavrsniProjekat.base.Base;
 
-public class ContactUsForm {
-    WebDriver wd;
+public class ContactUsForm extends Base {
 
     @FindBy(xpath = "//*[@id=\"contact-page\"]/div[2]/div[1]/div/h2")
     private WebElement getInTouchTitle;
@@ -35,13 +34,12 @@ public class ContactUsForm {
     @FindBy(xpath = "//*[@id=\"form-section\"]/a")
     private WebElement homeBtn;
 
-    public ContactUsForm(WebDriver wd) {
-        this.wd = wd;
+    public ContactUsForm() {
         PageFactory.initElements(this.wd, this);
     }
 
     public String contactUsTitle(){
-        return  getInTouchTitle.getText();
+        return getInTouchTitle.getText();
     }
 
     public void enterName(String testName){

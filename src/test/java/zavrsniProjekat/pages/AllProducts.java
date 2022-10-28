@@ -1,17 +1,14 @@
 package zavrsniProjekat.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import zavrsniProjekat.base.Base;
 
 import java.util.ArrayList;
 
-public class AllProducts {
-
-    private WebDriver wd;
+public class AllProducts extends Base {
 
     @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div/h2")
     WebElement productsTitle;
@@ -28,16 +25,8 @@ public class AllProducts {
     @FindBy(xpath = "/html/body/section[2]/div/div/div[1]/div/div[2]/div")
     WebElement brandsBox;
 
-
-
-
-
-
-
-
-    public AllProducts(WebDriver wd) {
-        this.wd = wd;
-        PageFactory.initElements(this.wd, this);
+    public AllProducts() {
+        PageFactory.initElements(wd, this);
     }
 
     public String productsTitle(){
@@ -67,7 +56,7 @@ public class AllProducts {
     }
 
     public String brandsCategories(){
-        new Actions(wd).moveToElement(brandsBox);
+        scrollToElement(brandsBox);
         return brandsBox.getText();
     }
 

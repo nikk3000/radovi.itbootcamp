@@ -1,15 +1,13 @@
 package zavrsniProjekat.pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import zavrsniProjekat.base.Base;
 
-public class SignupForm {
-
-    private WebDriver wd;
+public class SignupForm extends Base {
 
     @FindBy(xpath = "//*[@id=\"form\"]/div/div/div/div/h2/b")
     private WebElement signupTitle;
@@ -78,9 +76,8 @@ public class SignupForm {
     @FindBy(xpath = "//*[@id=\"form\"]/div/div/div/div/a")
     WebElement continueBtn;
 
-    public SignupForm(WebDriver wd) {
-        this.wd = wd;
-        PageFactory.initElements(this.wd, this);
+    public SignupForm() {
+        PageFactory.initElements(wd, this);
 
     }
 

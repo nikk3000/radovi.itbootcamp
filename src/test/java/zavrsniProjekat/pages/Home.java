@@ -2,17 +2,16 @@ package zavrsniProjekat.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import zavrsniProjekat.base.Base;
 
 
-public class Home {
-        private WebDriver wd;
+public class Home extends Base {
         private Actions action;
 
         @FindBy(xpath = "//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a")
@@ -27,7 +26,7 @@ public class Home {
         @FindBy(xpath = "//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a")
         private WebElement logoutBtn;
 
-        @FindBy(xpath = "//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[8]/a")
+        @FindBy(css = ".fa.fa-envelope")
         private WebElement contactUsBtn;
 
         @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div[1]/h2")
@@ -39,10 +38,10 @@ public class Home {
         @FindBy(xpath = "//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[3]/a")
         private WebElement cartBtn;
 
-        @FindBy(xpath = "//*[@id=\"susbscribe_email\"]")
+        @FindBy(id = "susbscribe_email")
         private WebElement subscriptionField;
 
-        @FindBy(xpath = "//*[@id=\"subscribe\"]")
+        @FindBy(id = "subscribe")
         private WebElement subscriptionBtn;
 
         @FindBy(id = "footer")
@@ -59,9 +58,8 @@ public class Home {
 
 
 
-        public Home(WebDriver wd) {
-                this.wd = wd;
-                PageFactory.initElements(this.wd, this);
+        public Home() {
+                PageFactory.initElements(wd, this);
                 action = new Actions(wd);
         }
 
@@ -117,8 +115,7 @@ public class Home {
         }
 
         public void clickViewCartAfterAddingItem() {
-                WebDriverWait w = new WebDriverWait(wd, 10);
-                w.until(ExpectedConditions.visibilityOf(viewCartBtn)).click();
+                waitForElementClickability(viewCartBtn);
         }
 
         public void clickContinueShopping(){
@@ -126,8 +123,7 @@ public class Home {
         }
 
         public String addedToCartTitle(){
-                WebDriverWait w = new WebDriverWait(wd, 4);
-                w.until(ExpectedConditions.visibilityOf(addedToCartTitle));
+                waitForElementVisibility(addedToCartTitle);
                 return addedToCartTitle.getText();
         }
 
@@ -139,8 +135,8 @@ public class Home {
         }
 
         public void scrollToItem(int itemNo) {
-                ((JavascriptExecutor) wd)
-                        .executeScript("arguments[0].scrollIntoView(true)", getItem(itemNo));
+                scrollToElement(getItem(itemNo));
+
         }
         public void hoverOverItem(int itemNo) {
                 Actions actions = new Actions(wd);
@@ -156,9 +152,7 @@ public class Home {
         }
 
         public void addItemToCart(int itemNo) {
-                WebDriverWait w = new WebDriverWait(wd, 10);
-                w.until(ExpectedConditions.visibilityOf(addItemToCartBtn(itemNo))).click();
-
+                waitForElementClickability(addItemToCartBtn(itemNo));
         }
         //endregion addtoCart
 

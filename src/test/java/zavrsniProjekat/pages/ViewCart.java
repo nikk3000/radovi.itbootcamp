@@ -7,12 +7,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import zavrsniProjekat.base.Base;
 
 import java.util.List;
 
-public class ViewCart {
-
-    WebDriver wd;
+public class ViewCart extends Base {
 
     @FindBy(xpath = "//*[@id=\"cart_info_table\"]/tbody")
     private WebElement cartTableBody;
@@ -20,9 +19,8 @@ public class ViewCart {
     @FindBy(xpath = "//*[@id=\"product-1\"]/td[6]/a")
     private WebElement deleteFirstItemBtn;
 
-    public ViewCart(WebDriver wd) {
-        this.wd = wd;
-        PageFactory.initElements(this.wd, this);
+    public ViewCart() {
+        PageFactory.initElements(wd, this);
     }
 
     public int countTheNumberOfRows(){

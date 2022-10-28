@@ -4,11 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import zavrsniProjekat.base.Base;
 
 
-public class SignupLogin {
-
-    private WebDriver wd;
+public class SignupLogin extends Base {
 
     @FindBy(xpath = "//*[@id=\"form\"]/div/div/div[3]/div/h2")
     WebElement signupFormTitle;
@@ -40,9 +39,8 @@ public class SignupLogin {
     @FindBy(xpath = "//*[@id=\"form\"]/div/div/div[3]/div/form/p")
     WebElement incorrectSignupFlag;
 
-    public SignupLogin(WebDriver wd) {
-        this.wd = wd;
-        PageFactory.initElements(this.wd, this);
+    public SignupLogin() {
+        PageFactory.initElements(wd, this);
 
     }
 

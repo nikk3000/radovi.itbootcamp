@@ -7,11 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
+import zavrsniProjekat.base.Base;
 
-public class ProductDetails {
-
-    WebDriver wd;
+public class ProductDetails extends Base {
 
     @FindBy(xpath = "/html/body/section/div/div/div[2]/div[2]/div[2]/div/h2")
     private WebElement productName;
@@ -33,9 +31,8 @@ public class ProductDetails {
 
 
 
-    public ProductDetails(WebDriver wd) {
-        this.wd = wd;
-        PageFactory.initElements(this.wd, this);
+    public ProductDetails() {
+        PageFactory.initElements(wd, this);
     }
 
     public String getProductName(){

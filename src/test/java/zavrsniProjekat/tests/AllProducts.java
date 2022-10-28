@@ -1,38 +1,17 @@
 package zavrsniProjekat.tests;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import zavrsniProjekat.pages.*;
-import java.time.Duration;
+import zavrsniProjekat.base.Base;
 
 
-public class AllProducts {
-        private WebDriver wd;
-        private Home home;
-
-        private ProductDetails productDetails;
-
-        private zavrsniProjekat.pages.AllProducts allProductsPage;
-
+public class AllProducts extends Base {
 
         @BeforeMethod
         public void configure(){
-            System.setProperty("webdriver.chrome.driver",
-                    "D:\\QA\\webdrivers\\chrome\\chromedriver.exe");
-
-
-            wd = new ChromeDriver();
-            home = new Home(wd);
-            productDetails = new ProductDetails(wd);
-            allProductsPage = new zavrsniProjekat.pages.AllProducts(wd);
-
             wd.get("https://www.automationexercise.com/");
             wd.manage().window().maximize();
-            wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
         }
 
@@ -40,12 +19,12 @@ public class AllProducts {
         public void allProductsPage_expectedPass(){
 
             home.clickProductsBtn();
-            Assert.assertEquals(allProductsPage.productsTitle(), "ALL PRODUCTS", "Incorrect title is displayed");
-            allProductsPage.productCategoriesCheck();
-            Assert.assertEquals(allProductsPage.categoryTitle(), "CATEGORY", "Category title is missing");
-            Assert.assertEquals(allProductsPage.brandsTitle(), "BRANDS", "Brands title is missing");
-            allProductsPage.productBrandsCheck();
-            System.out.println("The number of products displayed is: " + allProductsPage.allProductsOnPageCount());
+            Assert.assertEquals(allProducts.productsTitle(), "ALL PRODUCTS", "Incorrect title is displayed");
+            allProducts.productCategoriesCheck();
+            Assert.assertEquals(allProducts.categoryTitle(), "CATEGORY", "Category title is missing");
+            Assert.assertEquals(allProducts.brandsTitle(), "BRANDS", "Brands title is missing");
+            allProducts.productBrandsCheck();
+            System.out.println("The number of products displayed is: " + allProducts.allProductsOnPageCount());
 
             }
 
@@ -68,8 +47,4 @@ public class AllProducts {
 
         }
 
-        @AfterMethod
-        public void closeWD(){
-        wd.quit();
-    }
 }
